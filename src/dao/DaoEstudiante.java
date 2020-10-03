@@ -27,6 +27,7 @@ public class DaoEstudiante {
 	//c) recuperar todos los estudiantes, y especificar algún criterio de ordenamiento simple
 	public List<Estudiante> recuperarEstudiantes(){
 		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
 		try {
 		@SuppressWarnings("unchecked")
 		List <Estudiante> estudiantes = em.createQuery("SELECT e FROM Estudiante e order by edad DESC").getResultList();
@@ -41,16 +42,15 @@ public class DaoEstudiante {
 	//d) recuperar un estudiante, en base a su número de libreta universitaria
 	public Estudiante estudianteSegunLibreUniversitaria(int numLibreta){
 		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
 		try {
 		Query query = em.createQuery("SELECT e from Estudiante e where numero_libreta = :numero_libreta");
 		query.setParameter("numero_libreta", numLibreta);
 		@SuppressWarnings("unchecked")
 		Estudiante estudiante = (Estudiante) query.getSingleResult();
-		em.close();
 		return estudiante;
 		}
 		catch(Exception e){
-			em.close();
 			return null;
 		}
 	}
@@ -58,16 +58,15 @@ public class DaoEstudiante {
 	//e) recuperar todos los estudiantes, en base a su género
 	public List<Estudiante> estudianteSegunGenero(String genero){
 		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
 		try {
 		Query query = em.createQuery("SELECT e from Estudiante e where genero = :genero");
 		query.setParameter("genero", genero);
 		@SuppressWarnings("unchecked")
 		List <Estudiante> estudiantes = query.getResultList();
-		em.close();
 		return estudiantes;
 		}
 		catch(Exception e){
-			em.close();
 			return null;
 		}
 	}
@@ -81,11 +80,9 @@ public class DaoEstudiante {
 		query.setParameter("id", idCarrera);
 		@SuppressWarnings("unchecked")
 		List <Estudiante> carreras = (List<Estudiante>) query.getResultList();
-		em.close();
 		return carreras;
 		}
 		catch(Exception e){
-			em.close();
 			return null;
 		}
 	}
