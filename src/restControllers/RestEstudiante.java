@@ -51,4 +51,13 @@ public class RestEstudiante {
 	    return Lector.estudiante.estudianteSegunGenero(genero);
 	}
 	
+	//g) recuperar los estudiantes de una determinada carrera, filtrado por ciudad de residencia.
+	@GET
+	@Path("/estudianteSegunCarreraCiudad/{carrera}/{ciudad}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Estudiante> estudianteSegunCarreraCiudad(@PathParam("carrera") int carrera,@PathParam("ciudad") String ciudad){
+	    return Lector.estudiante.estudianteSegunCarreraCiudad(carrera,ciudad);
+	}
+	
+	
 }

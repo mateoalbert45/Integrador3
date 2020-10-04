@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Estudiante {
 	@Id
@@ -24,6 +26,7 @@ public class Estudiante {
 	private String ciudad_residencia;
 	@Column 
 	private int numero_libreta;
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "carrera")
 	private List <EstudianteCarrera> carreras;
 	
