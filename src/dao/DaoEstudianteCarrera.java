@@ -14,34 +14,33 @@ import esquemas.EstudianteCarreraPK;
 
 public class DaoEstudianteCarrera {
 	private EntityManagerFactory emf = null;
-
+	private DaoEstudiante daoEstudiante = null;
+	private DaoCarrera	  daoCarrera = null;
+	
 	public DaoEstudianteCarrera() {
 		this.emf = Persistence.createEntityManagerFactory("Arqui");
+		this.daoEstudiante = new DaoEstudiante();
+		this.daoCarrera = new DaoCarrera();
 	}
+	
+	
 	//b) matricular un estudiante en una carrera
-	public  void matricularEstudiante(Estudiante estu, Carrera carr) {
+	public  void matricularEstudiante(int idEstudiante, int idCarrera) {
 		EntityManager em = emf.createEntityManager();
-		EstudianteCarreraPK ecpk = new EstudianteCarreraPK(estu.getDni(),carr.getId());
+		EstudianteCarreraPK ecpk = new EstudianteCarreraPK(idEstudiante,idCarrera);
+//		Estudiante e = new Estudiante(1,"Agustin","Miguel",25,"m","Tandil",321);
+//		Carrera c = new Carrera(1,"tudai");
+//		daoEstudiante.insertEstudiante(e);
+//		daoCarrera.insertCarrera(c);
+		Estudiante e = daoEstudiante.getEstudiante(idEstudiante);
+		Carrera c = daoCarrera.getCarrera(idCarrera);
+	//	System.out.println(c.toString());
 		//Generamos fechas aleatoreas
-		EstudianteCarrera ec = new EstudianteCarrera(ecpk,estu,carr, new Date((long) (System.currentTimeMillis() - Math.random() * 1000000000)));
+		em.getTransaction().begin();
+		EstudianteCarrera ec = new EstudianteCarrera(ecpk,e,c, new Date((long) (System.currentTimeMillis() - Math.random() * 1000000000)));
 		em.persist(ec);
+		em.getTransaction().commit();
 		em.close();
 	}
 	
-	/*3)Generar un reporte de las carreras, que para cada carrera incluya información de los
-	inscriptos y egresados por año. Se deben ordenar las carreras alfabéticamente, y presentar
-	los años de manera cronológica.*/
-	public List<EstudianteCarrera> reporteCarreras(){
-		EntityManager em = emf.createEntityManager();
-		try {
-		@SuppressWarnings("unchecked")
-		List <EstudianteCarrera> reporte = em.createQuery("Select ec from EstudianteCarrera ec  join ec.carrera c  where ec.fechaEgreso is not null order by c.nombre,ec.fechaEgreso").getResultList();
-		em.close();
-		return reporte;
-		}
-		catch(Exception e){
-			em.close();
-			return null;
-		}
-	}
 }

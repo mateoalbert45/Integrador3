@@ -31,7 +31,7 @@ public class EstudianteCarrera {
 	    private Date fechaEgreso;
 	    
 		public EstudianteCarrera(){
-			
+			super();
 		}
 	    
 	    

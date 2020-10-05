@@ -18,6 +18,27 @@ public class DaoEstudiante {
 		this.emf = Persistence.createEntityManagerFactory("Arqui");
 	}
 	
+	
+	public Estudiante getEstudiante(int dni){
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		System.out.println(dni);
+		try {
+		Query query = em.createQuery("SELECT e from Estudiante e where dni = :dni");
+	
+		query.setParameter("dni", dni);
+		@SuppressWarnings("unchecked")
+		Estudiante estudiante = (Estudiante) query.getSingleResult();
+		System.out.println(estudiante.toString());
+		em.close();
+		return estudiante;
+		}
+		catch(Exception e){
+			em.close();
+			return null;
+		}
+	}
+	
 	//a) dar de alta un estudiante
 	public void insertEstudiante(Estudiante estu) {
 		EntityManager em = emf.createEntityManager();

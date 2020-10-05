@@ -1,22 +1,23 @@
 package esquemas;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReporteCarreras {
-	
+
 	private int idCarrera;
-	
+
 	private List<Estudiante> graduados;
-	
+
 	private List<Estudiante> inscriptos;
 
-	public List<Estudiante> getGraduados() {
-		return graduados;
+
+	public ReporteCarreras(int idCarrera) {
+		this.idCarrera = idCarrera;
+		this.graduados = new ArrayList<Estudiante>();
+		this.inscriptos = new ArrayList<Estudiante>();
 	}
 
-	public void setGraduados(List<Estudiante> graduados) {
-		this.graduados = graduados;
-	}
 
 	public int getIdCarrera() {
 		return idCarrera;
@@ -25,14 +26,18 @@ public class ReporteCarreras {
 	public List<Estudiante> getInscriptos() {
 		return inscriptos;
 	}
-	
-	public void setGraduado(Estudiante e) {
-		graduados.add(e);
-		
+
+	public List<Estudiante> getGraduados() {
+		return graduados;
 	}
-	public void setInscriptos(Estudiante e) {
-		inscriptos.add(e);
-		
+
+	public void setGraduados(List<Estudiante> e) {
+		graduados = e;
+
 	}
-	
+	public void setInscriptos(List<Estudiante> e) {
+		inscriptos = e;
+
+	}
+
 }

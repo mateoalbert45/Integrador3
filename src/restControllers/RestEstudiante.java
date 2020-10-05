@@ -17,18 +17,17 @@ import restControllers.Lector;
 @Path("/estudiante")
 public class RestEstudiante {
 	
+//	//a) dar de alta un estudiante
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/add")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String altaDeEstudiante(Estudiante e){
+		Lector.estudiante.insertEstudiante(e);
+	    return "El usuario fue guardado con exito";
+	}
 	
-//	@POST
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	@Path("/add")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public String altaDeEstudiante(Estudiante e){
-//	//	Estudiante e1 = new Estudiante(8,"pabloideeeeeeeeeeeeeeeee","Miguelsssssssss",25,"m","Tandil",321);
-//		Lector.estudiante.insertEstudiante(e);
-//	    return "El usuario fue guardado con exito";
-//	}
-	
-	
+	//c) recuperar todos los estudiantes, y especificar algún criterio de ordenamiento simple.
 	@GET
 	@Path("/recuperarEstudiantes")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -36,6 +35,7 @@ public class RestEstudiante {
 	    return Lector.estudiante.recuperarEstudiantes();
 	}
 	
+	//d) recuperar un estudiante, en base a su número de libreta universitaria.
 	@GET
 	@Path("/estudianteSegunLibreUniversitaria/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -43,7 +43,7 @@ public class RestEstudiante {
 	    return Lector.estudiante.estudianteSegunLibreUniversitaria(num);
 	}
 	
-	
+	//e) recuperar todos los estudiantes, en base a su género.
 	@GET
 	@Path("/estudianteSegunGenero/{genero}")
 	@Produces(MediaType.APPLICATION_JSON)

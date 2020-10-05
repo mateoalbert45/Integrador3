@@ -16,13 +16,21 @@ public class EstudianteCarreraPK implements Serializable {
 		
 	}
     
-    
-    
 	public EstudianteCarreraPK(int id_Estudiante, int id_Carrera) {
 		super();
 		this.id_Estudiante = id_Estudiante;
 		this.id_Carrera = id_Carrera;
 	}
+
+	public int getId_Estudiante() {
+		return id_Estudiante;
+	}
+
+	public int getId_Carrera() {
+		return id_Carrera;
+	}
     
     
+	
+	
 }
