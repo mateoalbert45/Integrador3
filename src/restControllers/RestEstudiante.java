@@ -22,9 +22,8 @@ public class RestEstudiante {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/add")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String altaDeEstudiante(Estudiante e){
+	public void altaDeEstudiante(Estudiante e){
 		Lector.estudiante.insertEstudiante(e);
-	    return "El usuario fue guardado con exito";
 	}
 	
 	//c) recuperar todos los estudiantes, y especificar algún criterio de ordenamiento simple.

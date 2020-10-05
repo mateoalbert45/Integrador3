@@ -5,9 +5,8 @@
     <title>integrador 3- grupo 4</title>
   </head>
     <body>
-      <h1>integrador 3- grupo 4</h1>
-      <h1 style= "color:red">cambiar path </h1>
-    	<form >
+      <h1>integrador 3 - Grupo 4</h1>
+    	<div >
     		<h1>A - Agregar nuevo estudiante</h1>
     		<input type="text" placeholder="nombre" id="idNombreInsert"style= "display:list-item">
     		<input type="text" placeholder="apellido" id="idApellidoInsert"style= "display:list-item">
@@ -16,8 +15,9 @@
     		<input type="number" placeholder="edad" id="idEdadInsert"style= "display:list-item">
         <input type="text" placeholder="genero" id="idGeneroInsert"style= "display:list-item">
         <input type="number" placeholder="numero_libreta" id="idLibretaInsert"style= "display:list-item">
-    		<input type="submit" id="submitPostEstudiante" value="submit" style= "display:list-item">
-    	</form>
+        <button type="button" id="submitPostEstudiante" >Aceptar</button>
+
+    	</div>
 
 
     	<form action="Integrador3/entregable/matricular" method="POST">
@@ -29,32 +29,63 @@
     		<input type="submit" value="submit" style= "display:list-item">
     	</form>
 
-    	<form action="" method="GET">
-    		<h1>D - GET estudiante por libreta.</h1>
+
+      <div>
+        <h1>C - recuperar todos los estudiantes, y especificar algún criterio de ordenamiento simple.</h1>
+        <button type="button" id="getEstudiantes" >Confirmar</button>
+        <div id="contenedorEstudiantes">
+        </div>
+      </div>
+
+
+    	<div>
+    		<h1>D - recuperar un estudiante, en base a su número de libreta universitaria.</h1>
     		<input type="number"placeholder="libreta" id="valueLibreta">
-    		<input type="submit" value="submit" id="submitEstudianteLibreta">
-    	</form>
+        <button type="button" id="submitEstudianteLibreta" >Confirmar</button>
+
+        <div id="contenedorEstudiantesLibreta">
+        </div>
+
+      </div>
 
 
-      <form action="http://localhost:8080/Integrador3/entregable/estudiante/recuperarEstudiantes" method="GET">
-        <h1>ACAAAAAAAAAAAA - GET ESTUDIANTES.</h1>
-        <input type="number"placeholder="libreta" id="as">
-        <input type="submit" value="submit" id="getEstudiantes">
-      </form>
-
-    	<form action="" method="GET">
+    	<div>
     		<h1>E - GET estudiante por genero</h1>
-        <input type="text" placeholder="genero" id="valueGenero" style= >
-        <input type="submit" value="submit" id="submitGenero">
+        <select  id="valueGenero">
+                    <option value="Hombre">Hombre</option>
 
-    	</form>
+                    <option value="Mujer">Mujer</option>
+        </select>
+        <button type="button" id="submitGenero" >Confirmar</button>
+        <div id="contenedorEstudiantesGenero">
+        </div>
+    	</div>
 
-    	<form action="Integrador3/entregable/estudiante/" method="GET">
-    		<h1>g - GET estudiante por carrera y ciudad residencia</h1>
+      <div>
+        <h1>F - recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos.</h1>
+        <button type="button" id="getCarrerasSegunInscriptos" >Confirmar</button>
+        <div id="contenedorCarrerasSegunInscriptos">
+        </div>
+      </div>
+
+
+    	<div>
+    		<h1>G - GET estudiante por carrera y ciudad residencia</h1>
     		<input type="text" placeholder="carrera" id="idCarrera" style= "display:list-item">
-    		<input type="text" placeholder="ciudad" id="idCiudad"style= "display:list-item">
-        <input type="submit" value="submit" id="submitCarreraCiudad">
-    	</form>
+    		<input type="text" placeholder="ciudad" id="Ciudad"style= "display:list-item">
+        <button type="button" id="getCarreraCiudad" >Confirmar</button>
+        <div id="contenedorCarreraCiudad">
+        </div>
+    	</div>
+
+      <div>
+        <h1>H - generar un reporte de las carreras.</h1>
+        <button type="button" id="getReporte" >Confirmar</button>
+        <div id="contenedorReporte">
+        </div>
+      </div>
+
+
   </body>
   <script src="main.js" charset="utf-8"></script>
 </html>
